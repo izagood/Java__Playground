@@ -3,8 +3,7 @@ package programmers_proj.problems.hash;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 /**
  * 완주하지 못한 선수
@@ -24,23 +23,36 @@ public class Participant {
 		String answer = "";
 	    Map<String, Integer> answerMap = new HashMap<String, Integer>();
 	    
-	    for(String part : participant){
-	        answerMap.put(part, answerMap.getOrDefault(part, 0) + 1);
-	    }
+	    Arrays.stream(participant).forEach(part -> {
+	    	answerMap.put(part, answerMap.getOrDefault(part, 0) + 1);
+	    });
 	    
-	    for(String comp : completion){
-	        answerMap.put(comp, answerMap.get(comp) - 1);
-	    }
+//	    for(String part : participant){
+//	        answerMap.put(part, answerMap.getOrDefault(part, 0) + 1);
+//	    }
 	    
-	    for(String key : answerMap.keySet()){
-	        if(answerMap.get(key) != 0 ){
-	            answer = key;
-	            break; 
-	        } 
-	    }
+	    Arrays.stream(completion).forEach(comp -> {
+	    	answerMap.put(comp, answerMap.get(comp) - 1);
+		});
 	    
-	    Map<String, Long> participantMap = Arrays.asList(participant).stream()
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//	    for(String comp : completion){
+//	        answerMap.put(comp, answerMap.get(comp) - 1);
+//	    }
+	    
+	    Optional<String> findFirst = answerMap.entrySet().stream()
+	    		.filter(key -> key.getValue() != 0)
+	    		.map(Map.Entry::getKey)
+	    		.findFirst();
+	    
+	    answer = findFirst.get();
+	    //answerMap.keySet().stream().filter(answerMap.get(key) -> )
+	    
+//	    for(String key : answerMap.keySet()){
+//	        if(answerMap.get(key) != 0 ){
+//	            answer = key;
+//	            break; 
+//	        } 
+//	    }
 	    
 	    return answer;
 	}
