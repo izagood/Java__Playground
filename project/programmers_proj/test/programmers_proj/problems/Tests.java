@@ -71,7 +71,8 @@ public class Tests {
 		List<Integer> readList = new ArrayList<>();
 		List<Integer> MatchList = new ArrayList<>();
 		
-		List<Integer> collect = CustomTakeWhile.takeWhile(Arrays.stream(randomIntsArray).boxed().filter(item -> {
+		List<Integer> collect = CustomTakeWhile.takeWhile(Arrays.stream(randomIntsArray).boxed()
+				.filter(item -> {
 			System.out.print("현재 숫자: " + item + "  ");
 			readList.add(item);
 			return item < 50;
