@@ -143,17 +143,17 @@ public class Tests {
 
 		/*--------------------------------------------------------------*/
 
-		List<String> list = Arrays.asList(test);
-
-		Optional<String> findFirst = list.stream().filter(el -> {
-			System.out.println("filter() was called.");
-			return el.contains("4");
-		}).map(el -> {
-			System.out.println("map() was called.");
-			return el.toUpperCase();
-		}).findFirst();
-
-		findFirst.ifPresent(System.out::println);
+//		List<String> list = Arrays.asList(test);
+//
+//		Optional<String> findFirst = list.stream().filter(el -> {
+//			System.out.println("filter() was called.");
+//			return el.contains("4");
+//		}).map(el -> {
+//			System.out.println("map() was called.");
+//			return el.toUpperCase();
+//		}).findFirst();
+//
+//		findFirst.ifPresent(System.out::println);
 
 		/*--------------------------------------------------------------*/
 
@@ -169,6 +169,70 @@ public class Tests {
 //		
 //		System.out.println(collect2);
 		/*--------------------------------------------------------------*/
+		
+//		List<String> collect = Stream.generate(() -> "test").limit(5).collect(Collectors.toList());
+//		System.out.println(collect);
+		
+		
+		
+		/*--------------------------------------------------------------*/
+		
+//		List<String> parallelList = IntStream.generate(() -> new Random().nextInt(100)).limit(100)
+//		.boxed()
+//		.map(el -> String.valueOf(el))
+//		.collect(Collectors.toList());
+//		// 병렬 스트림 생성
+//		Stream<String> parallelStream = parallelList.parallelStream();
+//
+//		// 병렬 여부 확인
+//		boolean isParallel = parallelStream.isParallel();
+//		
+//		System.out.println(isParallel);
+//		
+//		
+//		boolean isMany = parallelStream
+//				  .map(item -> Integer.parseInt(item) * 10)
+//				  .anyMatch(amount -> amount > 200);
+//		
+//		System.out.println(isMany);
+		/*--------------------------------------------------------------*/
+		
+//		int[] randomIntsArray = IntStream.generate(() -> new Random().nextInt(100)).limit(100).toArray();
+//		Arrays.stream(randomIntsArray).parallel();
+		
+		/*--------------------------------------------------------------*/
+		
+		
+		
+//		List<Product> productList = new ArrayList<>();
+//		
+//		IntStream.generate(() -> new Random().nextInt(100)).limit(100)
+//		.boxed()
+//		.forEach(el -> {
+//			Product product = new Product();
+//			product.setItem("item" + String.valueOf(el));
+//			product.setPrice(el);
+//			productList.add(product);
+//		});
+//		
+//		
+//		Stream<String> stream = 
+//				  productList.stream()
+//				  .map(Product::getItem);
+//		
+//		System.out.println(stream.collect(Collectors.toList()));
+		/*--------------------------------------------------------------*/
+		
+				int reduce = IntStream.range(1, 4) // [1, 2, 3]
+				.reduce(10, Integer::sum);
+				
+				System.out.println(reduce);
+		
+		/*--------------------------------------------------------------*/
+		/*--------------------------------------------------------------*/
+		/*--------------------------------------------------------------*/
+		
+		
 	}
 
 	@Test
