@@ -2,9 +2,12 @@ package programmers_proj.problems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -123,7 +126,6 @@ public class Tests {
 //		Stream<String> stream = names.stream().peek(System.out::println).map(String::toUpperCase);
 
 		/*--------------------------------------------------------------*/
-
 //		int sum = IntStream.of(1, 3, 5, 7, 9)
 //				  .peek(System.out::println)
 //				  .sum();
@@ -223,13 +225,95 @@ public class Tests {
 //		System.out.println(stream.collect(Collectors.toList()));
 		/*--------------------------------------------------------------*/
 		
-				int reduce = IntStream.range(1, 4) // [1, 2, 3]
-				.reduce(10, Integer::sum);
-				
-				System.out.println(reduce);
+//				int reduce = IntStream.range(1, 4) // [1, 2, 3]
+//				.reduce(10, Integer::sum);
+//				
+//				System.out.println(reduce);
 		
 		/*--------------------------------------------------------------*/
+//				int[] arr = {1,2,3};
+//				String[] arrString = {"1","2","3"};
+//				
+//				
+//				// 배열을 이용한 병렬 스트림 생성
+//				IntStream parallel = Arrays.stream(arr).parallel();
+//				Stream<String> parallelString = Arrays.stream(arrString).parallel();
+//				boolean parallel2 = parallel.isParallel();
+//				boolean parallel3 = parallelString.isParallel();
+//				System.out.println(parallel2);
+//				System.out.println(parallel3);
+				
 		/*--------------------------------------------------------------*/
+//				List<String> testString = new ArrayList<>();
+//				
+//				testString.add("test1");
+//				testString.add("test2");
+//				
+//				Stream<String> parallelStream = testString.parallelStream();
+//				boolean parallel = parallelStream.isParallel();
+//				Stream<String> sequential = parallelStream.sequential();
+//				boolean parallel2 = sequential.isParallel();
+//				System.out.println(parallel2);
+		/*--------------------------------------------------------------*/
+		
+		List<Product> productList = 
+				  Arrays.asList(new Product("potatoes", 1000),
+				                new Product("orange1", 1500),
+				                new Product("orange2", 1500),
+				                new Product("lemon", 2000),
+				                new Product("bread", 2500),
+				                new Product("sugar", 3000));
+		
+		
+		List<String> collectorCollection =
+				  productList.stream()
+				    .map(Product::getItem)
+				    .collect(Collectors.toList());
+		
+//		System.out.println(collectorCollection);
+		
+		
+		String listToString = 
+				 productList.stream()
+				  .map(Product::getItem)
+				  .collect(Collectors.joining(", ", "<", ">"));
+				
+//		System.out.println(listToString);
+		
+		
+		Integer summingAmount = 
+				 productList.stream()
+				  .collect(Collectors.summingInt(Product::getPrice));
+		
+//		System.out.println(summingAmount);
+		
+		IntSummaryStatistics statistics = 
+				 productList.stream()
+				  .collect(Collectors.summarizingInt(Product::getPrice));
+		
+//		System.out.println(statistics);
+		
+		Map<Integer, List<Product>> collectorMapOfLists =
+				 productList.stream()
+				  .collect(Collectors.groupingBy(Product::getPrice));
+		
+		
+//		System.out.println(collectorMapOfLists);
+		
+		
+		Map<Boolean, List<Product>> mapPartitioned = 
+				  productList.stream()
+				  .collect(Collectors.partitioningBy(el -> el.getPrice() > 1500));
+		
+//		System.out.println(mapPartitioned);
+		
+		
+		
+		Set<Integer> collect = productList.stream()
+		.collect(Collectors
+				.collectingAndThen(Collectors.groupingBy(Product::getPrice), Map::keySet));
+		System.out.println(collect);
+		
 		/*--------------------------------------------------------------*/
 		
 		
