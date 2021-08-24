@@ -8,8 +8,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -272,6 +276,7 @@ public class Tests {
 		
 //		System.out.println(collectorCollection);
 		
+		/*--------------------------------------------------------------*/
 		
 		String listToString = 
 				 productList.stream()
@@ -280,18 +285,21 @@ public class Tests {
 				
 //		System.out.println(listToString);
 		
+		/*--------------------------------------------------------------*/
 		
 		Integer summingAmount = 
 				 productList.stream()
 				  .collect(Collectors.summingInt(Product::getPrice));
 		
 //		System.out.println(summingAmount);
+		/*--------------------------------------------------------------*/
 		
 		IntSummaryStatistics statistics = 
 				 productList.stream()
 				  .collect(Collectors.summarizingInt(Product::getPrice));
 		
 //		System.out.println(statistics);
+		/*--------------------------------------------------------------*/
 		
 		Map<Integer, List<Product>> collectorMapOfLists =
 				 productList.stream()
@@ -300,6 +308,7 @@ public class Tests {
 		
 //		System.out.println(collectorMapOfLists);
 		
+		/*--------------------------------------------------------------*/
 		
 		Map<Boolean, List<Product>> mapPartitioned = 
 				  productList.stream()
@@ -308,12 +317,41 @@ public class Tests {
 //		System.out.println(mapPartitioned);
 		
 		
+		/*--------------------------------------------------------------*/
 		
 		Set<Integer> collect = productList.stream()
 		.collect(Collectors
 				.collectingAndThen(Collectors.groupingBy(Product::getPrice), Map::keySet));
-		System.out.println(collect);
+//		System.out.println(collect);
 		
+		/*--------------------------------------------------------------*/
+		List<String> list = Arrays.asList("b", "a", "c");
+		
+		list.stream()
+		  .filter(el -> {
+		    System.out.println("filter() was called.");
+		    return el.contains("a");
+		  })
+		  .map(el -> {
+		    System.out.println("map() was called.");
+		    return el.toUpperCase();
+		  })
+		  .findFirst();
+		
+		/*--------------------------------------------------------------*/
+		
+		Function<Integer, String> stringMap = el -> String.valueOf(el);
+
+	    Stream<Integer> integerStream = Stream.of(1, 2);
+	    List<String> collectList = integerStream.map(stringMap).collect(Collectors.toList());
+	    System.out.println("collect = " + collectList);
+	    Predicate ddd = new Predicate();
+	    UnaryOperator aa = new UnaryOperator();
+		
+		
+		/*--------------------------------------------------------------*/
+		/*--------------------------------------------------------------*/
+		/*--------------------------------------------------------------*/
 		/*--------------------------------------------------------------*/
 		
 		
