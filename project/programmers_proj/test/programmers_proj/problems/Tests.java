@@ -9,8 +9,6 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -345,8 +343,6 @@ public class Tests {
 	    Stream<Integer> integerStream = Stream.of(1, 2);
 	    List<String> collectList = integerStream.map(stringMap).collect(Collectors.toList());
 	    System.out.println("collect = " + collectList);
-	    Predicate ddd = new Predicate();
-	    UnaryOperator aa = new UnaryOperator();
 		
 		
 		/*--------------------------------------------------------------*/
