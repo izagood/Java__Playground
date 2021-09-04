@@ -1,10 +1,7 @@
 package programmers_proj.problems.hash;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class PhoneBook {
 	
@@ -44,20 +41,36 @@ public class PhoneBook {
         return answer;
     }
 	 * 
+	 * 동일하게 수행되지만 Hash를 사용하는것이 검색하는데 압도적인 성능을 보인다.
+	 * key에 값을 넣고 찾을때만 성능이 좋다.
+	 * value를 찾을 때는 성능이 좋지 않다.
 	 */
 	
     public boolean solution(String[] phone_book) {
         boolean answer = true;
         
-        List<String> numberList = Arrays.asList(phone_book);
         
-        Map<String, String> answerMap = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>();
         
-        numberList.stream().forEach(part -> {
-	    	answerMap.put(part, part.);
-	    });
+        Integer index = 0;
         
-        System.out.println(answerMap);
+        for(String number : phone_book) {
+        	
+        	int length = number.length();
+        	
+        	for(int i=1; i<length; i++) {
+        		map.put(number.substring(0, i), index);
+        		index++;
+        	}
+        }
+        
+        for(String number : phone_book) {
+        	boolean containsKey = map.containsKey(number);
+        	
+        	if(containsKey == true) {
+        		answer = false;
+        	}
+        }
         
         
         return answer;

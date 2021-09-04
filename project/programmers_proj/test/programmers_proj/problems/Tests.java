@@ -40,14 +40,14 @@ public class Tests {
 	@Test
 	@DisplayName("forEach break문 안됨")
 	public void forEachBreakTest() {
-		
+
 		/* java8의 forEach는 break가 불가능 */
-		
+
 		int[] randomIntsArray = IntStream.generate(() -> new Random().nextInt(100)).limit(10).toArray();
-		
+
 		List<Integer> readList = new ArrayList<>();
 		List<Integer> MatchList = new ArrayList<>();
-		
+
 		Arrays.stream(randomIntsArray).forEach(item -> {
 			if (item < 50) {
 				System.out.println("매칭된 숫자: " + item);
@@ -58,26 +58,25 @@ public class Tests {
 			}
 			readList.add(item);
 		});
-		System.out.println("모든 숫자 List: " + Arrays.stream(randomIntsArray).collect(ArrayList::new, List::add, List::addAll));
+		System.out.println(
+				"모든 숫자 List: " + Arrays.stream(randomIntsArray).collect(ArrayList::new, List::add, List::addAll));
 		System.out.println("매칭된 숫자 List: " + MatchList);
-		System.out.println("읽은 숫자 List: " + readList );
-		
+		System.out.println("읽은 숫자 List: " + readList);
 
 	}
-	
+
 	@Test
 	@DisplayName("forEach break문 커스텀")
 	public void forEachCustomTest() {
-		
+
 		/* break문을 커스텀 하여 사용 */
-		
+
 		int[] randomIntsArray = IntStream.generate(() -> new Random().nextInt(100)).limit(100).toArray();
-		
+
 		List<Integer> readList = new ArrayList<>();
 		List<Integer> MatchList = new ArrayList<>();
-		
-		List<Integer> collect = CustomTakeWhile.takeWhile(Arrays.stream(randomIntsArray).boxed()
-				.filter(item -> {
+
+		List<Integer> collect = CustomTakeWhile.takeWhile(Arrays.stream(randomIntsArray).boxed().filter(item -> {
 			System.out.print("현재 숫자: " + item + "  ");
 			readList.add(item);
 			return item < 50;
@@ -91,14 +90,16 @@ public class Tests {
 			return true;
 		}).collect(Collectors.toList());
 		System.out.println("collect List : " + collect);
-		
-		System.out.println("===================================================================================================");
-		System.out.println("모든 숫자 List: " + Arrays.stream(randomIntsArray).collect(ArrayList::new, List::add, List::addAll));
-		System.out.println("모든 숫자: " + Arrays.stream(randomIntsArray).collect(ArrayList::new, List::add, List::addAll).size());
+
+		System.out.println(
+				"===================================================================================================");
+		System.out.println(
+				"모든 숫자 List: " + Arrays.stream(randomIntsArray).collect(ArrayList::new, List::add, List::addAll));
+		System.out.println(
+				"모든 숫자: " + Arrays.stream(randomIntsArray).collect(ArrayList::new, List::add, List::addAll).size());
 		System.out.println("매칭된 숫자 List: " + MatchList);
-		System.out.println("읽은 숫자 List: " + readList );
-		
-		
+		System.out.println("읽은 숫자 List: " + readList);
+
 	}
 
 	@Test
@@ -173,14 +174,12 @@ public class Tests {
 //		
 //		System.out.println(collect2);
 		/*--------------------------------------------------------------*/
-		
+
 //		List<String> collect = Stream.generate(() -> "test").limit(5).collect(Collectors.toList());
 //		System.out.println(collect);
-		
-		
-		
+
 		/*--------------------------------------------------------------*/
-		
+
 //		List<String> parallelList = IntStream.generate(() -> new Random().nextInt(100)).limit(100)
 //		.boxed()
 //		.map(el -> String.valueOf(el))
@@ -200,14 +199,12 @@ public class Tests {
 //		
 //		System.out.println(isMany);
 		/*--------------------------------------------------------------*/
-		
+
 //		int[] randomIntsArray = IntStream.generate(() -> new Random().nextInt(100)).limit(100).toArray();
 //		Arrays.stream(randomIntsArray).parallel();
-		
+
 		/*--------------------------------------------------------------*/
-		
-		
-		
+
 //		List<Product> productList = new ArrayList<>();
 //		
 //		IntStream.generate(() -> new Random().nextInt(100)).limit(100)
@@ -226,12 +223,12 @@ public class Tests {
 //		
 //		System.out.println(stream.collect(Collectors.toList()));
 		/*--------------------------------------------------------------*/
-		
+
 //				int reduce = IntStream.range(1, 4) // [1, 2, 3]
 //				.reduce(10, Integer::sum);
 //				
 //				System.out.println(reduce);
-		
+
 		/*--------------------------------------------------------------*/
 //				int[] arr = {1,2,3};
 //				String[] arrString = {"1","2","3"};
@@ -244,7 +241,7 @@ public class Tests {
 //				boolean parallel3 = parallelString.isParallel();
 //				System.out.println(parallel2);
 //				System.out.println(parallel3);
-				
+
 		/*--------------------------------------------------------------*/
 //				List<String> testString = new ArrayList<>();
 //				
@@ -257,100 +254,75 @@ public class Tests {
 //				boolean parallel2 = sequential.isParallel();
 //				System.out.println(parallel2);
 		/*--------------------------------------------------------------*/
-		
-		List<Product> productList = 
-				  Arrays.asList(new Product("potatoes", 1000),
-				                new Product("orange1", 1500),
-				                new Product("orange2", 1500),
-				                new Product("lemon", 2000),
-				                new Product("bread", 2500),
-				                new Product("sugar", 3000));
-		
-		
-		List<String> collectorCollection =
-				  productList.stream()
-				    .map(Product::getItem)
-				    .collect(Collectors.toList());
-		
+
+		List<Product> productList = Arrays.asList(new Product("potatoes", 1000), new Product("orange1", 1500),
+				new Product("orange2", 1500), new Product("lemon", 2000), new Product("bread", 2500),
+				new Product("sugar", 3000));
+
+		List<String> collectorCollection = productList.stream().map(Product::getItem).collect(Collectors.toList());
+
 //		System.out.println(collectorCollection);
-		
+
 		/*--------------------------------------------------------------*/
-		
-		String listToString = 
-				 productList.stream()
-				  .map(Product::getItem)
-				  .collect(Collectors.joining(", ", "<", ">"));
-				
+
+		String listToString = productList.stream().map(Product::getItem).collect(Collectors.joining(", ", "<", ">"));
+
 //		System.out.println(listToString);
-		
+
 		/*--------------------------------------------------------------*/
-		
-		Integer summingAmount = 
-				 productList.stream()
-				  .collect(Collectors.summingInt(Product::getPrice));
-		
+
+		Integer summingAmount = productList.stream().collect(Collectors.summingInt(Product::getPrice));
+
 //		System.out.println(summingAmount);
 		/*--------------------------------------------------------------*/
-		
-		IntSummaryStatistics statistics = 
-				 productList.stream()
-				  .collect(Collectors.summarizingInt(Product::getPrice));
-		
+
+		IntSummaryStatistics statistics = productList.stream().collect(Collectors.summarizingInt(Product::getPrice));
+
 //		System.out.println(statistics);
 		/*--------------------------------------------------------------*/
-		
-		Map<Integer, List<Product>> collectorMapOfLists =
-				 productList.stream()
-				  .collect(Collectors.groupingBy(Product::getPrice));
-		
-		
+
+		Map<Integer, List<Product>> collectorMapOfLists = productList.stream()
+				.collect(Collectors.groupingBy(Product::getPrice));
+
 //		System.out.println(collectorMapOfLists);
-		
+
 		/*--------------------------------------------------------------*/
-		
-		Map<Boolean, List<Product>> mapPartitioned = 
-				  productList.stream()
-				  .collect(Collectors.partitioningBy(el -> el.getPrice() > 1500));
-		
+
+		Map<Boolean, List<Product>> mapPartitioned = productList.stream()
+				.collect(Collectors.partitioningBy(el -> el.getPrice() > 1500));
+
 //		System.out.println(mapPartitioned);
-		
-		
+
 		/*--------------------------------------------------------------*/
-		
+
 		Set<Integer> collect = productList.stream()
-		.collect(Collectors
-				.collectingAndThen(Collectors.groupingBy(Product::getPrice), Map::keySet));
+				.collect(Collectors.collectingAndThen(Collectors.groupingBy(Product::getPrice), Map::keySet));
 //		System.out.println(collect);
-		
+
 		/*--------------------------------------------------------------*/
 		List<String> list = Arrays.asList("b", "a", "c");
-		
-		list.stream()
-		  .filter(el -> {
-		    System.out.println("filter() was called.");
-		    return el.contains("a");
-		  })
-		  .map(el -> {
-		    System.out.println("map() was called.");
-		    return el.toUpperCase();
-		  })
-		  .findFirst();
-		
+
+		list.stream().filter(el -> {
+			System.out.println("filter() was called.");
+			return el.contains("a");
+		}).map(el -> {
+			System.out.println("map() was called.");
+			return el.toUpperCase();
+		}).findFirst();
+
 		/*--------------------------------------------------------------*/
-		
+
 		Function<Integer, String> stringMap = el -> String.valueOf(el);
 
-	    Stream<Integer> integerStream = Stream.of(1, 2);
-	    List<String> collectList = integerStream.map(stringMap).collect(Collectors.toList());
-	    System.out.println("collect = " + collectList);
-		
-		
+		Stream<Integer> integerStream = Stream.of(1, 2);
+		List<String> collectList = integerStream.map(stringMap).collect(Collectors.toList());
+		System.out.println("collect = " + collectList);
+
 		/*--------------------------------------------------------------*/
 		/*--------------------------------------------------------------*/
 		/*--------------------------------------------------------------*/
 		/*--------------------------------------------------------------*/
-		
-		
+
 	}
 
 	@Test
@@ -376,6 +348,53 @@ public class Tests {
 
 		boolean solution = phoneBook.solution(phone_book);
 		System.out.println(solution);
+
+	}
+
+	@Test
+	@DisplayName("위장")
+	void spy() {
+
+		Spy spy = new Spy();
+
+		String[][] clothes1 = { 
+				{ "yellowhat", "headgear" },
+				{ "bluesunglasses", "eyewear" },
+				{ "green_turban", "headgear" }
+				};
+		
+		String[][] clothes2 = {{"crowmask", "face"}, {"bluesunglasses", "face"}, {"smoky_makeup", "face"}};
+		
+		String[][] clothes3 = {
+				{"a", "A"},
+				{"aa", "A"},
+				
+				{"b", "B"},
+				{"ba", "B"},
+				{"bb", "B"},
+				
+				{"c", "C"},
+				{"ca", "C"},
+				
+				{"d", "D"},
+				{"da", "D"},
+				{"db", "D"}
+				};
+
+		int solution = spy.solution(clothes3);
+//		System.out.println(solution);
+
+	}
+
+	@Test
+	@DisplayName("간단 테스트")
+	void simpleTest() {
+
+		String a = "ab";
+
+		String substring = a.substring(0, 1);
+
+		System.out.println(substring);
 
 	}
 }
