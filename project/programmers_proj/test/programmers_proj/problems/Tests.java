@@ -380,9 +380,28 @@ public class Tests {
 				{"da", "D"},
 				{"db", "D"}
 				};
+		String[][] clothes4 = {
+				{"a", "A"},
+				{"aa", "A"},
+				
+				{"b", "B"},
+				{"ba", "B"},
+				{"bb", "B"},
+				
+				{"c", "C"},
+				{"ca", "C"},
+				
+				{"d", "D"},
+				{"da", "D"},
+				{"db", "D"},
+				
+				{"e", "E"},
+				{"ea", "E"},
+				{"eb", "E"}
+		};
 
-		int solution = spy.solution(clothes3);
-//		System.out.println(solution);
+		int solution = spy.solution(clothes4);
+		System.out.println(solution);
 
 	}
 

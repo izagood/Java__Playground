@@ -29,21 +29,16 @@ public class Spy {
 	 * @return
 	 */
 	public int solution(String[][] clothes) {
-		int answer = 0;
 		
         Map<String, Integer> clothesMap = new HashMap<>();
         Map<Integer, List<Integer>> groupMap = new HashMap<>();
-        
         
         for(String[] itemArr : clothes) {
         	clothesMap.put(itemArr[1], clothesMap.getOrDefault(itemArr[1], 0) + 1);
         }
         
-        System.out.println(clothesMap);
-        System.out.println("size : " +clothesMap.keySet().size());
         int groupSize = clothesMap.keySet().size();
         
-        // 첫번째로 무조건 하는 작업
         int valueSum = 0;
         int[] valueArr = new int[groupSize];
         int index = 0;
@@ -59,35 +54,27 @@ public class Spy {
         }
         
         for(int i=0; i<groupSize; i++) {
+        	int minusSum = 0;
         	
         	List<Integer> list = new ArrayList<>();
         	
-        	if(i == 0) {
-        		list.add(valueSum);
-         	}
-        	 
-        	if(i == 1) {
-        		list.add(valueSum - valueArr[i-1]);
-        		list.add(valueArr[i-1]);
+        	if(i != 0) {
+        		for(int j=0; j<i; j++) {
+        			minusSum = minusSum + valueArr[j];
+        		}
         	}
+        	list.add(valueSum - minusSum);
         	
-        	if(i == 2) {
-        		list.add(valueSum - valueArr[i-1] - valueArr[i-2]);
-        		list.add(valueArr[i-1]);
-        		list.add(valueArr[i-2]);
+        	if(i != 0) {
+        		for(int k=0; k<i; k++) {
+        			list.add(valueArr[k]);
+        		}
         	}
-        	if(i == 3) {
-        		list.add(valueSum - valueArr[i-1] - valueArr[i-2] - valueArr[i-3]);
-        		list.add(valueArr[i-1]);
-        		list.add(valueArr[i-2]);
-        		list.add(valueArr[i-3]);
-        	}
-        	
         	System.out.println(list);
         	groupMap.put(i, list);
         }
-        System.out.println(groupMap);
         
+        System.out.println(groupMap);
         int total = 0;
         
         for(Integer group : groupMap.keySet()) {
@@ -101,8 +88,6 @@ public class Spy {
         	total = total + tempMultiple;
         }
         
-        System.out.println(total);
-        
-        return answer;
+        return total;
     }
 }
