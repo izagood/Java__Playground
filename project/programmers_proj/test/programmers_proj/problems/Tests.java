@@ -400,7 +400,7 @@ public class Tests {
 				{"eb", "E"}
 		};
 
-		int solution = spy.solution(clothes4);
+		int solution = spy.solution(clothes3);
 		System.out.println(solution);
 
 	}
