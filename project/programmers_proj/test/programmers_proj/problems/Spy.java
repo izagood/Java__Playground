@@ -102,6 +102,14 @@ public class Spy {
 	 * 2개 : (1C1 * 2C1) + (2C1 * 1C1) + (1C1 * 1C1) = 5
 	 * 3개 : 1C1 * 2C1 * 1C1 = 3 
 	 * 
+	 * 참고하기 
+	 * 
+	 * 현재 로직은 for문이 가변적으로 바꿀 수 없음
+	 * 그래서 for문을 가변적으로 바꾸기 위해서는 재귀호출을 해야함
+	 * 밑의 링크를 참조
+	 * 
+	 * https://lipcoder.tistory.com/entry/%EC%99%84%EC%A0%84%ED%83%90%EC%83%89-%EC%A4%91%EC%B2%A9-%EB%B0%98%EB%B3%B5%EB%AC%B8-%EB%8C%80%EC%B2%B4%ED%95%98%EA%B8%B0
+	 * 
 	 * @param clothes
 	 * @return
 	 */
