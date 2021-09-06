@@ -1,5 +1,7 @@
 package programmers_proj.problems;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
@@ -13,12 +15,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import forEachUtil.CustomTakeWhile;
 import programmers_proj.problems.hash.Participant;
 import programmers_proj.problems.hash.PhoneBook;
+import programmers_proj.problems.hash.Product;
+import programmers_proj.problems.hash.Spy;
+import programmers_proj.problems.kakao.t2021.NewId;
 
 public class Tests {
 
@@ -405,6 +411,24 @@ public class Tests {
 
 	}
 
+	@Test
+	@DisplayName("신규 아이디 추천")
+	void newId() {
+		
+		String input = "...!@BaT#*..y.abcdefghijklm";
+		String output = "bat.y.abcdefghi1";
+		
+		NewId newId = new NewId();
+		String solution = newId.solution(input);
+		
+		Assertions.assertAll("test",
+				() -> assertEquals(output, solution),
+				() -> System.out.println("output : "+output),
+				() -> System.out.println("solution : "+solution)
+		);
+		
+	}
+	
 	@Test
 	@DisplayName("간단 테스트")
 	void simpleTest() {

@@ -1,4 +1,4 @@
-package programmers_proj.problems;
+package programmers_proj.problems.hash;
 
 public class Product {
 	

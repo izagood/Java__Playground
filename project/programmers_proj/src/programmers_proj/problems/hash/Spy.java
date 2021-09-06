@@ -1,4 +1,4 @@
-package programmers_proj.problems;
+package programmers_proj.problems.hash;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,6 +110,7 @@ public class Spy {
 	 * 
 	 * https://lipcoder.tistory.com/entry/%EC%99%84%EC%A0%84%ED%83%90%EC%83%89-%EC%A4%91%EC%B2%A9-%EB%B0%98%EB%B3%B5%EB%AC%B8-%EB%8C%80%EC%B2%B4%ED%95%98%EA%B8%B0
 	 * 
+	 * 
 	 * @param clothes
 	 * @return
 	 */
@@ -206,4 +207,22 @@ public class Spy {
         
         return answer;
     }
+	
+	//
+	public void pick(int loop ) {
+		for(int i=0; i<loop; i++) {
+			
+		}
+		/*if(i == 3){
+			for(int j=0; j<groupSize; j++) {
+				for(int k=j + 1; k<groupSize; k++) {
+					for(int l= k+1;l<groupSize; l++) {
+						for(int m=l+1; m<groupSize; m++) {
+							list.add(valueArr[j] * valueArr[k] * valueArr[l] * valueArr[m]);
+						}
+					}
+				}
+			}
+		}*/
+	}
 }
