@@ -403,7 +403,7 @@ public class Tests {
 				{"eb", "E"}
 		};
 
-		int solution = spy.solution(clothes3);
+		int solution = spy.solution(clothes4);
 		System.out.println(solution);
 
 	}
@@ -426,15 +426,7 @@ public class Tests {
 		
 	}
 	
-	@Test
-	@DisplayName("간단 테스트")
-	void simpleTest() {
-
-		String a = "ab";
-
-		String substring = a.substring(0, 1);
-
-		System.out.println(substring);
-
-	}
+	
+	
+	
 }
