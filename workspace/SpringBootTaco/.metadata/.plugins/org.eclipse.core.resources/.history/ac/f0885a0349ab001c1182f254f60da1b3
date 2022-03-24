@@ -1,0 +1,18 @@
+package tacos;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.MockMvc;
+
+class HomeControllerTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+	
+	public void testHomePage() throws Exception {
+		mockMvc.perform(null)
+		
+	}
+}

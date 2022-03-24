@@ -1,5 +1,8 @@
 package test_project;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -281,5 +284,21 @@ public class Tests {
         };
         
         Collections.sort(testList, test);
+	}
+	
+	@Test
+	@DisplayName("URL 인코딩 디코딩 테스트")
+	public void encodecoTest() {
+		try {
+			String json = "{\"mall_id\":\"05559032\",\"mall_nm\":\"(%EC%A3%BC)%EC%9C%A0%EB%8B%88%EB%B2%A0%EB%9D%BC_%ED%85%8C%EC%8A%A4%ED%8A%B8_WEB(%EC%9C%A0%ED%94%BC%EC%95%B1)\",\"order_no\":\"S47137\",\"pay_type\":\"22\",\"cert_type\":\"1\",\"currency\":\"00\",\"product_nm\":\"%EC%8A%A4%ED%82%A8%EC%BC%80%EC%96%B4100\",\"product_amt\":\"1000\",\"return_url\":\"http://218.55.79.148:8080/appUP/easyPay/order_res_submit.bizmob\",\"lang_flag\":\"KOR\",\"charset\":\"UTF-8\",\"user_id\":\"dv000\",\"memb_user_no\":\"100606881\",\"user_nm\":\"%EB%AA%A8%EB%B9%8C%ED%85%8C%EC%8A%A4%ED%8A%B8\",\"user_mail\":\"\",\"user_phone1\":\"\",\"user_phone2\":\"\",\"user_addr\":\"undefined%20undefined\",\"user_define1\":\"\",\"user_define2\":\"\",\"user_define3\":\"\",\"user_define4\":\"\",\"user_define5\":\"\",\"user_define6\":\"\",\"mobilereserved1\":\"\",\"mobilereserved2\":\"\",\"reserved1\":\"\",\"reserved2\":\"\",\"reserved3\":\"\",\"reserved4\":\"\",\"product_type\":\"0\",\"product_expr\":\"\",\"app_scheme\":\"upapp://\",\"window_type\":\"iframe\",\"disp_cash_yn\":\"N\",\"usedcard_code\":\"\",\"quota\":\"00:03:06:09:12\",\"os_cert_flag\":\"2\",\"noinst_flag\":\"\",\"noinst_term\":\"029-02:03\",\"set_point_card_yn\":\"\",\"point_card\":\"\",\"join_cd\":\"\",\"kmotion_useyn\":null,\"vacct_bank\":\"\",\"vacct_end_date\":\"20211224\",\"vacct_end_time\":\"235959\",\"prepaid_cp\":\"\"}";
+			
+			String test = URLDecoder.decode(json, StandardCharsets.UTF_8.toString());
+			System.out.println(test);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

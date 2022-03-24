@@ -1,7 +1,10 @@
 package programmers_proj.problems;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -423,6 +426,46 @@ public class Tests {
 //				() -> System.out.println("output : "+output),
 //				() -> System.out.println("solution : "+solution)
 //		);
+		
+	}
+	
+	@Test
+	@DisplayName("부가세 공급가액 계산")
+	void vatCalc() {
+		
+		String total = "36000";
+		int supply = 0;
+		int vat = 0;
+		
+		double parseDouble = Double.parseDouble(total);
+		vat = (int) Math.round((parseDouble/1.1)*0.1);
+		
+		Integer valueOf = Integer.valueOf(total);
+		
+		supply = valueOf - vat;
+		
+		System.out.println("금액 : " + (supply + vat));
+		System.out.println("공급가액 : " + supply);
+		System.out.println("부가세 : " + vat);
+		
+		
+		
+	}
+	
+	@Test
+	@DisplayName("이전달 계산")
+	void pastMonth() {
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		cal.add(Calendar.MONTH, -1);
+		
+		String previousMonthfirstDay = (dateFormat.format(cal.getTime())).substring(0, 6) + "01";
+		
+		
+		System.out.println(previousMonthfirstDay);
+		
 		
 	}
 	
