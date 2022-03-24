@@ -6,4 +6,6 @@
     <fullyQualifiedTypeName name="org.springframework.test.web.servlet.MockMvc"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
     <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
 </qualifiedTypeNameHistroy>
