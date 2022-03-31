@@ -1,9 +1,13 @@
-package com.zagood.inflearnthejavatest;
+package com.zagood.inflearnthejavatest.domain;
+
+import com.zagood.inflearnthejavatest.member.Member;
+import com.zagood.inflearnthejavatest.study.StudyStatus;
 
 public class Study {
 	private StudyStatus status = StudyStatus.DRAFT;
 	
 	private int limit;
+	private Member owner;
 	
 	public Study(int limit) {
 		if(limit < 0) {
@@ -19,5 +23,9 @@ public class Study {
 	
 	public int getLimit() {
 		return this.limit;
+	}
+	
+	public void setOwner(Member owner) {
+		this.owner = owner;
 	}
 }
