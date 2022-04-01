@@ -16,16 +16,41 @@ public class Study {
 		
 		this.limit = limit;
 	}
+	
+	public Study(int id, String email) {
+		if(limit < 0) {
+			throw new IllegalArgumentException("limit는 0보다 커야 한다.");
+		}
+		
+		Member member = new Member();
+		member.setId(id);
+		member.setEmail(email);
+		
+		this.owner = member;
+	}
 
 	public StudyStatus getStatus() {
-		return this.status;
+		return status;
 	}
-	
+
+	public void setStatus(StudyStatus status) {
+		this.status = status;
+	}
+
 	public int getLimit() {
-		return this.limit;
+		return limit;
 	}
-	
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public Member getOwner() {
+		return owner;
+	}
+
 	public void setOwner(Member owner) {
 		this.owner = owner;
 	}
+
 }
