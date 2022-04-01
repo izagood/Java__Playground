@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -17,7 +18,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito.Then;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -29,11 +29,11 @@ import com.zagood.inflearnthejavatest.member.MemberService;
 @ExtendWith(MockitoExtension.class) //이게 있어야 동작함
 public class StudyServiceTest {
 
-	@Mock
-	MemberService memberService;
-	
-	@Mock
-	StudyRepository studyRepository;
+//	@Mock
+//	MemberService memberService;
+//	
+//	@Mock
+//	StudyRepository studyRepository;
 	
 	@Test
 	void createStudyService(@Mock MemberService memberService,
@@ -65,7 +65,7 @@ public class StudyServiceTest {
 	}
 	
 	@Test
-	void practiceTest1(@Mock MemberService memberService,
+	void practiceTest1( @Mock MemberService memberService,
 						@Mock StudyRepository studyRepository) {
 		StudyService studyService = new StudyService(memberService, studyRepository);
 		assertNotNull(studyService);
@@ -99,8 +99,8 @@ public class StudyServiceTest {
 	
 	@Test
 	@DisplayName("기존 형식의 mockito 사용")
-	void practiceTest2(@Mock MemberService memberService,
-					@Mock StudyRepository studyRepository) {
+	void practiceTest2( @Mock MemberService memberService,
+						@Mock StudyRepository studyRepository) {
 		/* Given 주어진 상황*/
 		StudyService studyService = new StudyService(memberService, studyRepository);
 		assertNotNull(studyService);
@@ -142,9 +142,10 @@ public class StudyServiceTest {
 	
 	@Test
 	@DisplayName("BDD 형식의 mockito 사용")
-	void practiceTest3(@Mock MemberService memberService,
-			@Mock StudyRepository studyRepository) {
-		/* Given 주어진 상황*/
+	void practiceTest3( @Mock MemberService memberService,
+						@Mock StudyRepository studyRepository) {
+		
+		/* given 주어진 상황*/
 		StudyService studyService = new StudyService(memberService, studyRepository);
 		assertNotNull(studyService);
 		
@@ -158,10 +159,10 @@ public class StudyServiceTest {
 		given(memberService.findById(1L)).willReturn(Optional.of(member));
 		given(studyRepository.save(study)).willReturn(study);
 		
-		/* When 뭔가를 하면 */
+		/* when 뭔가를 하면 */
 		studyService.createNewStudy(1L, study);
 		
-		/* Then 이렇게 될 것 이다. */
+		/* then 이렇게 될 것 이다. */
 		assertEquals(member, study.getOwner());
 		
 		then(memberService).should(times(1)).notify(study);
